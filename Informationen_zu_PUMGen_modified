@@ -1,0 +1,22 @@
+Zu PUMGen_modified:
+
+Abweichungen vom ursprünglichen PUMGen sind nur in der Klasse GambitReader.h zu finden.
+Die id_map mappt die ids der Elemente aus dem .neu file auf neue einzigartige ids, die kleiner/gleich der Anzahl der Elemente sind. Dies ist notwendig aufgrund von Restriktionen in der Klasse ParallelGambitReader.h. In den Methoden readGroups und readBoundaries, wird die in readElements erstellte Map dann verwendet, um den eingelesenen Elementen dann ihre lokale und korrekte id zuzuweisen mit Hilfe der ursprünglich geparsten id als Key.
+TODOs, die noch in den Files stehen stammen vom ursprünglichen Autor.
+
+Zum Hintergrund:
+Gmash erzeugt eine .neu Datei mit zufälligen ids für die Elemente, was das originale PUMGen nicht korrekt einlesen kann, daher das Mapping.
+Um in das .neu file die Boundary Types korrekt einzulesen, ist es notwendig, dass in dem .geo file die Types als "Namen" mitgegeben werden. Werden diese nur als Zahl oder als "Namen" und als Zahl mitgebeben führt dies später zu fehlern.
+
+Zu den aktuell offenen Problemen:
+Das von Gmash erzeugte .neu file enthält deutlich weniger Boundaries (beispielsweise 200 zu 150) als das von gmsh2gambit erzeugte .neu file.
+Deswegen oder aus einem noch unbekannten Grund, fehlen im fertigen .h5 file 4 Tetraeder, an den unteren vier Ecken des Qauders.
+
+Compile:
+Analog PUMGen:
+https://github.com/SeisSol/PUMGen/wiki/How-to-compile-PUMGen
+Info: hier unter "Compiling PUMGen without Simmetrix" den \ weglassen, da dieser teilweise zu Fehlern führt!
+
+
+
+
